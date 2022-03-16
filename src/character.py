@@ -1,4 +1,5 @@
-
+# Author: Peter Vanderhook
+# Date: March 11th, 2022
 
 class Character():
     
