@@ -11,6 +11,9 @@ class Item():
     def rename(self):
         pass
 
+    def __repr__(self) -> str:
+        return self.name
+
     def improve(self):
         pass
 
