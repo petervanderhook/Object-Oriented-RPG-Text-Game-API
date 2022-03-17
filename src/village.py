@@ -23,3 +23,18 @@ class Village():
 
     def enter_building(self, building):
         pass
+
+
+
+class Building():
+
+    def __init__(self, name, building_type="inn", store_inventory=[], npcs_here=[]):
+        self.name = name
+        self.type = building_type
+
+    def __repr__(self):
+        return "Name: " + str(self.name) + " | Type: " + str(self.type)
+    
+
+    def shop_instance(self):
+        pass

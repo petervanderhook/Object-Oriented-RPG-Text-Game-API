@@ -53,6 +53,8 @@ class GlobalMap():
                     plains.append(x)
         self.plains = plains
 
+    def check_adjacent_tiles(self, type):
+        pass
 
     def move(self):
         pass
@@ -61,4 +63,8 @@ class GlobalMap():
         pass
 
 
-        
+
+
+class MapInstance(GlobalMap):
+    def __init__(self):
+        pass
