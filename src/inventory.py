@@ -28,13 +28,16 @@ class Container():
         self.max = max_item_weight
     
     def insert(self, thing):
+        """Puts item into container. Ensures the item being stores is of instance item and that there is space"""
         if isinstance(thing, Item):
             if len(self.container) < self.capacity:
                 self.container.append(thing)
 
     
-    def withdraw(self, item):
+    def discard(self, item):
+        """Deletes an item in your container."""
         pass
 
     def use(self):
+        """Uses the item in your container."""
         pass

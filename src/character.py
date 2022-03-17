@@ -4,6 +4,11 @@
 class Character():
     
     def __init__(self, name):
+        """Creates a character.
+        Stats are stored in a dictionary.
+        xp to next level increases on levelup, xp is not reset
+        
+        list for status effects, not sure how I will implement this yet. Maybe via 'time' module."""
         self.name = name
         self.skillpoints = 4
         self.level = 1
