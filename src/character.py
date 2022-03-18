@@ -1,5 +1,7 @@
-# Author: Peter Vanderhook
+# Authors: Peter Vanderhook and Victor Polemeni
 # Date: March 11th, 2022
+
+
 
 class Character():
     
@@ -12,11 +14,10 @@ class Character():
         self.name = name
         self.skillpoints = 4
         self.level = 1
-        self.skills = { "attack": 3, "defense": 3, "wisdom": 3, "agility": 3, "luck": 3, "health": 10}
+        self.skills = { "attack": 3, 'strength': 3, "defense": 3, "wisdom": 3, "agility": 3, "luck": 3, "health": 10}
         self.exp = 0
         self.exp_to_level = 69
-        self.status = []
-
+        self.status = {'poison': False, 'bleeding': False, 'fear': False}
 
     def level_up(self):
         """Levels up. Run this function after xp gain if xp > exp to level.

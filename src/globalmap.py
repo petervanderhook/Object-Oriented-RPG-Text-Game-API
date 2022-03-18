@@ -26,16 +26,17 @@
 # 13 | 0  0  0  0  P  0  0  0  0  1  1  1  1  1  V  |
 # 14 | 0  0  0  0  P  V  0  0  1  1  1  1  1  1  1  |
 # 15 | 0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  |
-#    |----------------------------------------------| 
+#    |----------------------------------------------|
 class GlobalMap():
     
-    def __init__(self):
+    def __init__(self): 
         """Assigns tiles to a labeled list via their coordinates. 
         Generates the largest type of tiles (plains) by checking if generated tiles are already in use.
         
         Maybe will have a list of available spawn points? Or have one that is fixed? Or random depending on difficulty.
         
         """
+        self.location = [1, 11]
         self.water = [[1, 6], [1, 7], [2, 6], [4, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2]]
         self.instances = [[3, 3], [14, 6], [13, 15], [7, 12], [12, 12]]
         self.bridge = [[3, 6]]
@@ -62,14 +63,68 @@ class GlobalMap():
                     plains.append(x)
         self.plains = plains
 
-    def check_adjacent_tiles(self, type):
-        """Checks if type of tile is adjacent to your current tile. Maybe useful for items like fishing?"""
-        pass
+    def check_adjacent_tiles(self):
+        """Checks if type of tile is adjacent to your current tile. Maybe useful for items like fishing?
+        returns 1 if a matching tile is adjacent
+        CHECKS ONLY FOR WATER RIGHT NOW."""
+        up = self.location
+        up[0] -= 1
+        down = self.location
+        down[0] += 1
+        left = self.location
+        left[1] -= 1
+        right = self.location
+        right[1] += 1
+        adjacent_tiles = [up, down, left, right]
+        for item in adjacent_tiles:
+            if item in self.water:
+                return True
+        
 
-    def move(self):
+    def move(self, direction):
         """
-        Moves from one 'tile' to an adjacent one on the map. Ensures the tile is available and allows movement"""
-        pass
+        Moves from one 'tile' to an adjacent one on the map. Ensures the tile is available and allows movement
+        
+        direction arg: 'up', 'down', 'left', or 'right'
+        """
+        if direction == 'up':
+            self.new_location = self.location
+            self.new_location[0] -= 1
+        elif direction == 'down':
+            self.new_location = self.location
+            self.new_location[0] += 1
+        elif direction == 'left':
+            self.new_location = self.location
+            self.new_location[1] -= 1
+        elif direction == 'right':
+            self.new_location = self.location
+            self.new_location[1] += 1
+        
+        check = self.check_valid(self.new_location)
+        if check == 1:
+            self.location = self.new_location
+            print(f"Moved to {self.new_location}")
+        elif check == 0:
+            print("Unable to move in this direction!")
+        else:
+            pass #opens necessary instnace
+        
+    def __repr__(self):
+        return f"Current Location: {str(self.location)}"
+    
+    def check_valid(self, coord):
+        #Invalid = 0, Valid = 1, Instance = 2
+        if coord in self.water:
+            return 0
+        elif coord in self.impassable:
+            return 0
+        elif coord in self.instances:
+            return 2
+        else:
+            for num in coord:
+                if (num < 1) or (num > 15):
+                    return 0
+        return 1
 
     def enter_instance(self):
         """Enters a nested map or instance.

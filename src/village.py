@@ -5,6 +5,7 @@ class Village():
         self.name = name
         self.buildings = buildings
         self.map = map
+        self.quests_available = {'fishing quest': False, 'sword quest': False, 'kill stuff': 5}
 
     def move(self):
         """Will let you move inside the village? Maybe unecessary.
