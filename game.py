@@ -7,14 +7,14 @@ class Game():
         self.start_time = time.time()
         self.start_time -= 960
         #name = input("What is your name?")
-        Character('name')
+        self.character = Character('name')
+        self.map = GlobalMap()
 
     def get_name_and_difficulty(self):
         pass
     
 
     def get_time(self):
-        time.sleep(5)
         time_elapsed = time.time() - self.start_time
         hours = int(time_elapsed) // 120
         days = hours // 24
@@ -26,7 +26,7 @@ class Game():
 
 
 def main():
-    newGame = Game()
+    game = Game()
     move_prefixes = ['check', 'view']
     while True:
         command = input("What would you like to do?").lower()
@@ -34,7 +34,7 @@ def main():
         # Moving: Prefixes(move, go, head) Postfixes(north, south, west, east, up, down, left, right)
         # Doing: Prefixes(check, view) Postfixes(inventory, time, health, status, character)
         if command == 'check time':
-            print(newGame.get_time())
+            print(game.get_time())
         else:
             print("invalid command")
 
@@ -42,4 +42,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    #main()
+    pass

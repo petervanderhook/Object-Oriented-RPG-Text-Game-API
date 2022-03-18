@@ -17,7 +17,7 @@ class Character():
         self.skills = { "attack": 3, 'strength': 3, "defense": 3, "wisdom": 3, "agility": 3, "luck": 3, "health": 10}
         self.exp = 0
         self.exp_to_level = 69
-        self.status = {'poison': False, 'bleeding': False, 'fear': False}
+        self.status = {'poison': False, 'bleed': False, 'fear': False}
 
     def level_up(self):
         """Levels up. Run this function after xp gain if xp > exp to level.
@@ -42,7 +42,17 @@ class Character():
                 print('\n' * 100)
     
     def __repr__(self):
-        return f"========== {self.name} ==========\nLevel: {self.level}   Progress: {self.exp}/{self.exp_to_level}\nStatus: {self.status}\nAttack: {self.skills['attack']}    Defense: {self.skills['defense']}\nWisdom: {self.skills['wisdom']}    Agility: {self.skills['agility']}\nHealth: {self.skills['health']}    Luck: {self.skills['luck']}\n========== {self.name} =========="
+        #make this look good later
+        status_effects = ""
+        if self.status['poison']:
+            status_effects += 'Poisoned'
+        if self.status['bleed']:
+            status_effects += 'Bleeding'
+        if self.status['fear']:
+            status_effects += 'Feared'
+        if status_effects == "":
+            status_effects += 'None'
+        return f"========== {self.name} ==========\nLevel: {self.level}   Progress: {self.exp}/{self.exp_to_level}\nStatus: {status_effects}\nHealth: {self.skills['health']}\nAttack: {self.skills['attack']}    Defense: {self.skills['defense']}\nStrength: {self.skills['strength']}    Wisdom: {self.skills['wisdom']}\nAgility: {self.skills['agility']}    Luck: {self.skills['luck']}\n========== {self.name} =========="
     
 
         
