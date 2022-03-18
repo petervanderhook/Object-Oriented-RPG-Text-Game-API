@@ -85,18 +85,18 @@ class GlobalMap():
         """
         Moves from one 'tile' to an adjacent one on the map. Ensures the tile is available and allows movement
         
-        direction arg: 'up', 'down', 'left', or 'right'
+        direction arg: 'north', 'south', 'west', or 'east'
         """
-        if direction == 'up':
+        if direction == 'north':
             self.new_location = self.location
             self.new_location[0] -= 1
-        elif direction == 'down':
+        elif direction == 'south':
             self.new_location = self.location
             self.new_location[0] += 1
-        elif direction == 'left':
+        elif direction == 'west':
             self.new_location = self.location
             self.new_location[1] -= 1
-        elif direction == 'right':
+        elif direction == 'east':
             self.new_location = self.location
             self.new_location[1] += 1
         
