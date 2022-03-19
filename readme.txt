@@ -1,10 +1,10 @@
 THINGS TO DO:
 
-Inventory Management Instance
-Nested Village Map
-Cave Map
-Combat + Drops
+Inventory management > Use, Discard
+Map > Nested Village, Cave, map display while moving?
+Villages > Add Buildings Object + instance, Shops
+Gameplay > Balance Leveling
 Balance Leveling
-Add skills modifications to equip and unequip\
 NPCs
 Crafting
+Combat + Drops

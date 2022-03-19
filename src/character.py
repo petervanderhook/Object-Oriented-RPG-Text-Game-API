@@ -28,7 +28,7 @@ class Character():
     def unequip(self):
         #add stat removal   
         self.show_equipment(True)
-        slot = input("\nWhat slot would you like to unequip?\n>").lower()
+        slot = input("\nWhat 'slot' would you like to unequip?\n>").lower()
         if slot == 'pouch':
             print("Unable to manipulate this slot.")
             return 0
@@ -40,6 +40,9 @@ class Character():
                         return 0
                     else:
                         self.inventory.append(self.equipment[slot])
+                        for stat_boost in self.equipment[slot].stats:
+                            if self.equipment[slot].stats[stat_boost] > 0:
+                                self.skills[stat_boost] -= self.equipment[slot].stats[stat_boost]
                         print("Unequipped your " + str(self.equipment[slot]) + ".")
                         self.equipment[slot] = None
                         return
@@ -49,17 +52,67 @@ class Character():
             else:
                 print("Please enter a valid slot.")
                 return 0
-                    
+    
+    def show_inventory(self):
+        silver = self.coins % 100
+        gold = self.coins // 100
+        print(f"You have {gold} gold and {silver} silver coins.")
+        return_string = ""
+        for item in self.inventory:
+            return_string += f"'{str(item.name)}'\n"
+        if return_string == "":
+            print("Your inventory is empty!")
+        else:
+            print("Items in inventory:")
+            print(return_string)
 
+    def manage_inventory(self):
+        print(f"You have {len(self.inventory)} items and have space for {str(self.capacity)} in total")
+        manage = True
+        while manage:
+            try:
+                choice = input("What would you like to do?\n'equip', 'unequip', 'view', 'discard', 'use'\n>").lower()
+            except:
+                print("Please enter a valid choice.")
+                continue
+            if choice == 'view':
+                self.show_inventory()
+            elif choice == 'unequip':
+                self.unequip()
+            elif choice == 'equip':
+                self.show_inventory()
+                print()
+            elif choice == 'use':
+                print("Incomplete method")
+            elif choice == 'discard':
+                print("Incomplete method")
+            else:
+                print("Please pick a valid choice")
                 
 
-    def equip(self, item: Gear):    
+    def equip(self):
+        self.show_inventory()
+        item_name = input("What item would you like to equip?\n>").lower()
+        for check_item in self.inventory:
+            if str(check_item.name).lower() == item_name:
+                item = check_item
+                break
         try:
             if self.equipment[str(item.slot)] != None:
                 print("Equipment slot is already occupied!")
                 return 0
             self.equipment[str(item.slot)] = item
+            try:
+                pop_num = self.inventory.index(item)
+            except ValueError:
+                print("Something went wrong, unable to find item in inventory.")
+                return 0
+            self.inventory.pop(pop_num)
             self.capacity += item.capacity
+
+            for stat_boost in item.stats:
+                if item.stats[stat_boost] > 0:
+                    self.skills[stat_boost] += item.stats[stat_boost]
 
             #add actual stat boosts
             print("Equipped " + str(item.name))
@@ -91,12 +144,13 @@ class Character():
                 print("Please enter a valid choice")
                 print('\n' * 100)
     
+    
     def show_equipment(self, hide=False):
         for item in self.equipment:
             if str(item) == 'pouch':
                 continue
             if self.equipment[str(item)] != None:
-                print('\n' + str(self.equipment[str(item)]) + " equipped in the "+ str(item) + " slot.")
+                print('\n' + str(self.equipment[str(item)]) + " equipped in the '"+ str(item) + "' slot.")
                 for stat in self.equipment[str(item)].stats:
                     if self.equipment[str(item)].stats[str(stat)] > 0:
                         print(f"Grants +{self.equipment[str(item)].stats[str(stat)]} to {stat}.")
