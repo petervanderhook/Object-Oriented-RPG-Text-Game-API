@@ -1,3 +1,11 @@
+from src.building import Building
+#   X X X X X X X X    *North West Village*
+#   X X ^ X E X X X    E = Exit
+#   X X 0 X 0 M X X    X = Impassable
+#   X E 0 0 0 0 E X    T = Tavern/Inn
+#   X X 0 X 0 T X X    M = Market  
+#   X B 0 X E X X X    ^ = Village Leader
+#   X X X X X X X X    0 = Roads
 class Village():
     
     def __init__(self, name, buildings, map):
@@ -5,14 +13,13 @@ class Village():
         self.name = name
         self.buildings = buildings
         self.map = map
-        self.quests_available = {'fishing quest': False, 'sword quest': False, 'kill stuff': 5}
 
     def move(self):
         """Will let you move inside the village? Maybe unecessary.
         """
         pass
 
-    def exit(self):
+    def exit(self, orientation='E'):
         """Exits village and goes back to main map. Will need to determine adj tile to spit the player onto."""
         pass
 
@@ -28,24 +35,8 @@ class Village():
         """Dunder method, prints the village name when you try to print the object"""
         return "Village: " + str(self.name)
 
-    def enter_building(self, building):
+    def enter_building(self, building: Building):
         """Enters a custom loop for the specific building. Building as parameter and then determine how function should work via the building type."""
         pass
 
 
-
-class Building():
-
-    def __init__(self, name, building_type="inn", store_inventory=[], npcs_here=[]):
-        """Building has npcs inside + store inventory if available."""
-        self.name = name
-        self.type = building_type
-
-    def __repr__(self):
-        """Prints the name of the building and it's type. Will be used in the village function to print list of buildings."""
-        return "Name: " + str(self.name) + " | Type: " + str(self.type)
-    
-
-    def shop_instance(self):
-        """Shop loop when you are trying to purchase from a building."""
-        pass

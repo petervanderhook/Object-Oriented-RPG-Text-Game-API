@@ -107,6 +107,7 @@ class Character():
             except ValueError:
                 print("Something went wrong, unable to find item in inventory.")
                 return 0
+                
             self.inventory.pop(pop_num)
             self.capacity += item.capacity
 
@@ -157,7 +158,29 @@ class Character():
             else:
                 if hide == False:
                     print('\n' + "Nothing equipped in the " + str(item) + " slot.")
-                    
+
+    def discard(self):
+        self.show_inventory()
+        item_name = input("What item would you like to discard?\n>").lower()
+        item = None
+        for check_item in self.inventory:
+            if str(check_item.name).lower() == item_name:
+                item = check_item
+                break
+        if item == None:
+            print("Unable to find item in inventory.")
+            return 0
+        else:
+            while True:
+                confirm = input(f"Are you sure you wish to discard {str(item.name)}?\n'yes', 'no'\n>").lower()
+                if confirm == 'no':
+                    self.discard()
+                    return 
+                elif confirm == 'yes':
+                    print("Discarding...")
+                    pop_num = self.inventory.index(item)
+                    self.inventory.pop(pop_num)
+                    break
     
     def __repr__(self):
         #make this look good later
