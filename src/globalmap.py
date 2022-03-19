@@ -1,6 +1,5 @@
 # V = Village ( Opens Nested Map )
 # M = Mountain Cave Entrance
-
 # X = IMPASSABLE TERRAIN
 # W = Water
 # 0 = Plains
