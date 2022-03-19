@@ -1,11 +1,11 @@
 #ITEMS, NOT PLAYER, WILL BE ASSIGNED INVENTORY
 #player gets 2 slotS?
-from item import Item
+from item import Gear, Item 
 
 
 class Container():
 
-    def __init__(self, item: Item, capacity=4, max_item_weight=5):
+    def __init__(self, item: Gear, capacity=4, max_item_weight=5):
         """
         Constructor for Container Object
 
@@ -27,7 +27,7 @@ class Container():
         self.current_weight = item.weight
         self.max = max_item_weight
     
-    def insert(self, thing):
+    def insert(self, thing: Item):
         """Puts item into container. Ensures the item being stores is of instance item and that there is space"""
         if isinstance(thing, Item):
             if len(self.container) < self.capacity:

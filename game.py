@@ -1,5 +1,4 @@
-import string
-from src.globalmap import GlobalMap, MapInstance
+from src.globalmap import GlobalMap
 from src.character import Character
 import time
 
@@ -24,14 +23,14 @@ class Game():
 
         return f"0{int(days)}:0{int(hours)}:{int(minutes)}"
     
-    def get_command(self, input: string):
+    def get_command(self, input: str):
         print('\n' * 1000)
-        check_prefixes = ['check', 'view', 'see', 'open']
+        check_prefixes = ['check', 'view', 'see', 'open', 'show']
         move_prefixes = ['go', 'head', 'move', 'travel']
         time_postfixes = ['time', 'date', 'day', 'hour']
         inventory_postfixes = ['bag', 'inventory', 'backpack', 'sack', 'pack']
         character_postfixes = ['character', 'health', 'stats', 'xp', 'exp', 'level', 'lvl', 'experience', 'progress', 'char', str(self.character.name).lower()]
-
+        gear_postfixes = ['gear', 'equipped', 'equipment', 'items', 'garb', 'armor', 'weapon']
         north = ['up', 'north']
         south = ['down', 'south']
         west = ['left', 'west']
@@ -57,6 +56,9 @@ class Game():
                 return 1
             elif postfix in character_postfixes:
                 print(self.character)
+                return 1
+            elif postfix in gear_postfixes:
+                print(self.character.show_equipment())
                 return 1
             else:
                 return 0
@@ -84,7 +86,7 @@ def main():
     game = Game()
     while True:
         game.get_command(input("\n\nWhat would you like to do?\n>").lower())
-        #COMMANDS: 
+        # COMMANDS: 
         # Moving: Prefixes(move, go, head) Postfixes(north, south, west, east, up, down, left, right)
         # Doing: Prefixes(check, view) Postfixes(inventory, time, health, status, character)
         if game == 0:

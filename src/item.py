@@ -36,10 +36,11 @@ class Consumeable(Item):
 
 
 
-class Gear(Item):
+class Gear(Item):#                                                Atk Str Def Wis Agi Lck Hp
     """Gear/equipment child class."""
-    def __init__(self, name, value=0, weight=0, effect=[], stats=[0, 0, 0, 0, 0, 0], slot="trinket"):
+    def __init__(self, name, capacity=0, value=0, weight=0, effect=[], stats={'attack': 0, 'strength': 0, 'defense': 0, 'wisdom': 0, 'agility': 0, 'luck': 0, 'health': 0}, slot="trinket"):
         self.name = name
+        self.capacity = capacity
         self.value = value
         self.weight = weight
         self.effect = effect
@@ -47,11 +48,5 @@ class Gear(Item):
         self.slot = slot
         self.worn = False
     
-
-    def equip(self):
-        """Equip the item. Checks if the slot is currently in use."""
-        pass
-
-    def unequip(self):
-        """unequips item. Checks that you have enough space for the item in your containers."""
-        pass
+    def __repr__(self):
+        return str(self.name)
