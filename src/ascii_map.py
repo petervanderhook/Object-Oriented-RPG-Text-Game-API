@@ -1,0 +1,4 @@
+class Ascii_map(){
+	
+
+}
