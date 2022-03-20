@@ -16,7 +16,7 @@ class Character():
         self.skills = { "attack": 4, 'strength': 3, "defense": 3, "wisdom": 3, "agility": 3, "luck": 3, "health": 10}
         self.exp = 0
         self.exp_to_level = 69
-        self.status = {'poison': False, 'bleed': False, 'fear': False}
+        self.status = {'poison': False, 'bleed': False, 'feared': False, 'weakened': False, 'slowed': False, 'blinded': False, 'muted': False, 'fatigued': False, 'exhausted': False, 'vulnerable': False, 'restrained': False, 'slept': False, 'stunned': False, 'paralyzed': False}
         self.inventory = []
         sack = Gear("Old Leather Pouch", capacity=4, value=2, weight=1, slot='back')
         dagger = Gear("Rusty Dagger", weight=1, stats={'attack': 1, 'strength': 0, 'defense': 0, 'wisdom': 0, 'agility': 0, 'luck': 0, 'health': 0}, slot='weapon')
