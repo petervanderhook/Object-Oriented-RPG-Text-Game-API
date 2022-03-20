@@ -1,4 +1,0 @@
-class Ascii_map(){
-	
-
-}
