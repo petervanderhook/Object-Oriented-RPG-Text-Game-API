@@ -7,3 +7,7 @@ Gameplay > Balance Leveling
 NPCs
 Crafting
 Combat + Drops
+
+
+Credits:
+https://deepnight.net/ (Awesome for the map)
