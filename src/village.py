@@ -1,4 +1,5 @@
 from src.building import Building
+from src.globalmap import GlobalMap
 #      1 2 3 4 5 6
 #    X X X X X X X X    *Rockstone Village*
 # 1  X X ^ X E X X X    E = Exit
@@ -14,7 +15,7 @@ rockstone_instances = [[1, 2], [5, 1], [2, 5]]
 rockstone_limits = [5, 6]
 
 
-class Village():
+class Village(GlobalMap):
     
     def __init__(self, name, buildings, map, exits=[], roads=[], instances=[], limits=[0, 0]):
         """Constructor for the village. More to do"""
@@ -36,10 +37,33 @@ class Village():
         print(self.instances)
         print(self.impassable)
 
-    def move(self):
-        """Will let you move inside the village? Maybe unecessary.
+    def move(self, direction):
         """
-        pass
+        Moves from one 'tile' to an adjacent one on the map. Ensures the tile is available and allows movement
+        
+        direction arg: 'north', 'south', 'west', or 'east'
+        """
+        if direction == 'north':
+            self.new_location = self.location
+            self.new_location[0] -= 1
+        elif direction == 'south':
+            self.new_location = self.location
+            self.new_location[0] += 1
+        elif direction == 'west':
+            self.new_location = self.location
+            self.new_location[1] -= 1
+        elif direction == 'east':
+            self.new_location = self.location
+            self.new_location[1] += 1
+        
+        check = self.check_valid(self.new_location)
+        if check == 1:
+            self.location = self.new_location
+            print(f"Moved to {self.new_location}")
+        elif check == 0:
+            print("Unable to move in this direction!")
+        else:
+            pass #opens necessary instnace
 
     def exit(self, orientation='E'):
         """Exits village and goes back to main map. Will need to determine adj tile to spit the player onto."""

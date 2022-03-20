@@ -35,11 +35,13 @@ class GlobalMap():
         Maybe will have a list of available spawn points? Or have one that is fixed? Or random depending on difficulty.
         
         """
+        self.limits = [15, 15]
+        self.exits = [0, 0]
         self.location = [1, 11]
         self.water = [[1, 6], [1, 7], [2, 6], [4, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2]]
         self.instances = [[3, 3], [14, 6], [13, 15], [7, 12], [12, 12]]
         self.bridge = [[3, 6]]
-        self.impassable = [[4, 11], [4, 12], [4, 13], [5, 10], [5, 11], [5, 12], [5, 13], [5, 14], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [7, 11], [7, 13]]
+        self.impassable = [[1, 6], [1, 7], [2, 6], [4, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2], [4, 11], [4, 12], [4, 13], [5, 10], [5, 11], [5, 12], [5, 13], [5, 14], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [7, 11], [7, 13]]
         self.trail = [[1, 11], [2, 11], [2, 10], [2, 9], [2, 9], [2, 7], [3, 7], [3, 5], [3, 4], [4, 7], [5, 7], [6, 7], [6, 6], [7, 6], [8, 6], [9, 6], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [11, 9], [11, 10,], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [12, 15], [11, 5], [12, 5], [13, 5], [14, 5]]
         self.forest = [[9, 15], [10, 11], [10, 12], [10, 13], [10, 14], [10, 15], [12, 10], [12, 11], [12, 13], [12, 14], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [14, 9], [14, 10], [14, 11], [14, 12], [14, 13], [14, 14], [14, 15], [15, 9], [15, 10], [15, 11], [15, 12], [15, 13], [15, 14], [15, 15]]
         plains = []
@@ -112,17 +114,18 @@ class GlobalMap():
         return f"Current Location: {str(self.location)}"
     
     def check_valid(self, coord):
-        #Invalid = 0, Valid = 1, Instance = 2
-        if coord in self.water:
-            return 0
-        elif coord in self.impassable:
+        #Invalid = 0, Valid = 1, Instance = 2, Exit = 3
+        if coord in self.impassable:
             return 0
         elif coord in self.instances:
             return 2
-        else:
-            for num in coord:
-                if (num < 1) or (num > 15):
-                    return 0
+        elif coord in self.exits:
+            return 3
+        else: 
+            if (coord[0] < 1) or (coord[0] > self.limits[0]):
+                return 0
+            if (coord[1] < 1) or (coord[1] > self.limits[1]):
+                return 0
         return 1
 
     def enter_instance(self):
