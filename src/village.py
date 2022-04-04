@@ -26,6 +26,7 @@ class Village(GlobalMap):
         self.roads = roads
         self.instances = instances
         impassable = []
+        self.inside = True
         for i in range(1, limits[0] + 1):
             for j in range(1, limits[1] + 1):
                 coords = [i, j]
@@ -62,10 +63,11 @@ class Village(GlobalMap):
             print(f"Moved to {self.new_location}")
         elif check == 0:
             print("Unable to move in this direction!")
-        else:
-            pass #opens necessary instnace
+        elif check == 2:
+            pass
 
-    def exit(self, orientation='E'):
+
+    def exit(self, direction=''):
         """Exits village and goes back to main map. Will need to determine adj tile to spit the player onto."""
         pass
 
@@ -80,6 +82,11 @@ class Village(GlobalMap):
     def __repr__(self) -> str:
         """Dunder method, prints the village name when you try to print the object"""
         return "Village: " + str(self.name)
+
+    
+    def enter_village(self, vill_coords):
+        pass
+
 
     def enter_building(self, building: Building):
         """Enters a custom loop for the specific building. Building as parameter and then determine how function should work via the building type."""

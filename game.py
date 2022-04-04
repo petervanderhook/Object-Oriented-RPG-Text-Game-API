@@ -61,7 +61,7 @@ class Game():
                 print(self.character.show_equipment())
                 return 1
             else:
-                return 0
+                return 3
         elif prefix in move_prefixes:
             if postfix in north:
                 self.map.move('north')
@@ -76,7 +76,7 @@ class Game():
                 self.map.move('east')
                 return 1
             else:
-                return 0
+                return 3
 
 
 
@@ -85,16 +85,20 @@ class Game():
 def main():
     game = Game()
     while True:
-        game.get_command(input("\n\nWhat would you like to do?\n>").lower())
+        try:
+            command = input("\n\nWhat would you like to do?\n>").lower()
+            s = game.get_command(command)
         # COMMANDS: 
         # Moving: Prefixes(move, go, head) Postfixes(north, south, west, east, up, down, left, right)
         # Doing: Prefixes(check, view) Postfixes(inventory, time, health, status, character)
-        if game == 0:
+        except (IndexError, ValueError):
+            print(f"{command} what, where, who... How??")
+        if s == 3:
             print("Error, Invalid Command.")
 
 
 
 
 if __name__ == '__main__':
-    #main()
+    main()
     pass

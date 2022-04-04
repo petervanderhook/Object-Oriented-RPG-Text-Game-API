@@ -37,6 +37,8 @@ class GlobalMap():
         """
         self.limits = [15, 15]
         self.exits = [0, 0]
+        self.old_location = [1, 11]
+        self.new_location = [1, 11]
         self.location = [1, 11]
         self.water = [[1, 6], [1, 7], [2, 6], [4, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2]]
         self.instances = [[3, 3], [14, 6], [13, 15], [7, 12], [12, 12]]
@@ -88,6 +90,7 @@ class GlobalMap():
         
         direction arg: 'north', 'south', 'west', or 'east'
         """
+        self.old_location = self.location
         if direction == 'north':
             self.new_location = self.location
             self.new_location[0] -= 1
@@ -108,7 +111,8 @@ class GlobalMap():
         elif check == 0:
             print("Unable to move in this direction!")
         else:
-            pass #opens necessary instnace
+            self.location = self.new_location
+            self.enter_instance(self.old_location)
         
     def __repr__(self):
         return f"Current Location: {str(self.location)}"
@@ -128,7 +132,7 @@ class GlobalMap():
                 return 0
         return 1
 
-    def enter_instance(self):
+    def enter_instance(self, enter=[]):
         """Enters a nested map or instance.
         """
         pass

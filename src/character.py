@@ -185,14 +185,6 @@ class Character():
     def __repr__(self):
         #make this look good later
         status_effects = ""
-        if self.status['poison']:
-            status_effects += 'Poisoned'
-        if self.status['bleed']:
-            status_effects += 'Bleeding'
-        if self.status['fear']:
-            status_effects += 'Feared'
-        if status_effects == "":
-            status_effects += 'None'
         return f"========== {self.name} ==========\nLevel: {self.level}   Progress: {self.exp}/{self.exp_to_level}\nStatus: {status_effects}\nHealth: {self.skills['health']}\nAttack: {self.skills['attack']}    Defense: {self.skills['defense']}\nStrength: {self.skills['strength']}    Wisdom: {self.skills['wisdom']}\nAgility: {self.skills['agility']}    Luck: {self.skills['luck']}\n========== {self.name} =========="
     
 
