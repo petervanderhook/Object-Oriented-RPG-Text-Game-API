@@ -1,0 +1,52 @@
+text based game
+
+needs:
+ game loop
+	something that will give player choice on what to do.
+	things that they can do: move around, the root instance.
+once you exit it, the game is over.
+could add a menu aswell, that would start root instance.
+
+something to handle input/ all commands(keep bas9ic)
+moving around
+inventory
+skill check
+item equipment
+something that will handle inputs in overworld.
+
+inventory system for the player that is like an array,
+the player could hold items, could have weight
+class for inventory and class for items(different items LIKE QUEST ITEMS, POTIONS, sthe sorts)\
+
+
+player class, probably just take a name or something like that, should auto generate from a name(like skills, starting gear, etc)
+could have abunch of attributes and have the developer be able to opt in to which ones they want.
+
+for magic, would we do based off mana or scrolls. both, give a mana system or a consumes system, they can choose to opt in to one or both or none.
+
+class for enemies, 
+	boss subclass?
+keep it simple for now with 1 class and they will have their own stats, and commands they can use in an array, they depend on enemy complexity.
+will leave room for multiple potential moves, but will be consistent throughout.
+very important for this, because we can use this for combat, we can use methods, possibly have 2 or 4  classes for both combat sides. since healths an move around
+keep it simple as possible. maybe make inventory like SQL, with insert delete update, maybe they want to remove an item, have a function that could equip or removed items from the array.
+select insert delete update,
+equip items
+use items in inventory
+would need a pop delete?
+
+
+map is called on the moving around command. methods already display on given tile, map command breaks it into tiles, maybe let the developer opt in on this stuff.
+
+maybe a leveling up system that maybe adds points to skills, might be included in the player class.
+
+for town and shops, they would be other instances like their own, shops would have their own inventorys(recycle class) and adds some methods and protections for gold exchange or value exchance as such.
+
+combat system
+
+add quests to the player object, maybe make a system for procedurally generated /randomly arranged maybe, would be nice.
+maybe even add an item like x amount gold if you complete.
+quest items too possibly.
+
+how would developers go about adding their own code manually(like sequential/decision prompts)
+
